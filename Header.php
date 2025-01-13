@@ -1,43 +1,45 @@
 <?php
 
+/**
+ * Classe Header
+ * Genera l'encapçalat de la pàgina amb el títol i el logotip del centre.
+ */
 class Header {
     
-    // Método para mostrar el encabezado
+    /**
+     * Mostra l'encapçalat HTML amb la barra de navegació i el carrusel.
+     *
+     * @return void
+     */
     public function mostrarHeader() {
-        // Imprime la estructura básica de un documento HTML con el encabezado y los estilos
         echo '<!DOCTYPE html>
               <html lang="es">
               <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
                 <title>Centro de Formación Profesional</title>
-                <!-- Enlace a Bootstrap desde su repositorio remoto -->
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-                
-                <!-- Estilos personalizados -->
                 <style>
                     body {
-                        margin-bottom: 70px; /* Ajusta la altura del footer fijo */
-                        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Utiliza Helvetica como tipografía predeterminada */
+                        margin-bottom: 70px;
+                        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                     }
                     .footer {
                         position: fixed;
                         bottom: 0;
                         width: 100%;
-                        background-color: #343a40; /* Color de fondo del footer */
-                        color: white; /* Color del texto del footer */
-                        padding: 10px 0; /* Espaciado interno del footer */
+                        background-color: #343a40;
+                        color: white;
+                        padding: 10px 0;
                     }
                     .navbar-custom {
-                        background-color: #37541d !important; /* Cambia el color de fondo del encabezado a blanco */
-                        color: #343a40 !important; /* Cambia el color del texto del encabezado a oscuro */
-                        padding: 15px 0; /* Ajusta el espaciado interno del encabezado */
+                        background-color: #37541d !important;
+                        color: #343a40 !important;
+                        padding: 15px 0;
                     }
                     .navbar-custom .navbar-nav .nav-link {
-                        color: #ffffff !important; /* Cambia el color del texto del menú a oscuro */
+                        color: #ffffff !important;
                     }
-                    
-                    /* Estilos adicionales para personalizar el carrusel */
                     #carrusel-container {
                         margin-top: 50px;
                     }
@@ -51,7 +53,6 @@ class Header {
               </head>
               <body>';
         
-        // Imprime el encabezado con la barra de navegación y el logotipo
         echo '<header class="container-fluid navbar-custom">
                 <div class="container">
                     <div class="row align-items-center">
@@ -93,34 +94,33 @@ class Header {
                 </div>
               </header>';
         
-        // Imprime el carrusel con imágenes
         echo '<div class="container" id="carrusel-container">
-    <div id="carrusel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://img.freepik.com/free-vector/template-banner-online-store-with-shopping-cart-with-purchases-boxes-delivery-from-supermarket-vector-illustration_548887-104.jpg?w=2000&t=st=1701788835~exp=1701789435~hmac=d35b956865746e2f32a7e1b93733a0614acb1eb01e9180747eb1bac78024eb0e" class="d-block w-100" alt="Imagen 1" style="margin-top:-200px">
-            </div>
-            <div class="carousel-item">
-                <img src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX31859615.jpg" class="d-block w-100" alt="Imagen 2" style="margin-top:-100px">
-            </div>
-            <div class="carousel-item">
-                <img src="https://static.vecteezy.com/system/resources/thumbnails/004/299/815/small/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment-ecommerce-illustration-search-vector.jpg" class="d-block w-100" alt="Imagen 3" style="margin-top:-200px">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carrusel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carrusel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-        </button>
-    </div>
-</div>';
+                <div id="carrusel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://img.freepik.com/free-vector/template-banner-online-store-with-shopping-cart-with-purchases-boxes-delivery-from-supermarket-vector-illustration_548887-104.jpg?w=2000&t=st=1701788835~exp=1701789435~hmac=d35b956865746e2f32a7e1b93733a0614acb1eb01e9180747eb1bac78024eb0e" class="d-block w-100" alt="Imagen 1" style="margin-top:-200px">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX31859615.jpg" class="d-block w-100" alt="Imagen 2" style="margin-top:-100px">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://static.vecteezy.com/system/resources/thumbnails/004/299/815/small/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment-ecommerce-illustration-search-vector.jpg" class="d-block w-100" alt="Imagen 3" style="margin-top:-200px">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carrusel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carrusel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+                </div>
+              </div>';
     }
 }
 
-// Crea una instancia de la clase Header y llama al método mostrarHeader
+// Crea una instancia de la classe Header i la mostra
 $header = new Header();
 $header->mostrarHeader();
 

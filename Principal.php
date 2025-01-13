@@ -3,38 +3,44 @@
 require_once('Connexio.php');
 require_once('Header.php');
 
-class Principal {
-    
-    // Método para mostrar la lista de productos
-    public function mostrarProductes() {
-        // Obtiene la conexión a la base de datos
+/**
+ * Classe Principal
+ * Mostra la llista de productes i gestiona l'afegit de nous productes.
+ */
+class Principal
+{
+
+    /**
+     * Mostra la llista de productes amb les seves categories i el formulari per afegir un nou producte.
+     *
+     * @return void
+     */
+    public function mostrarProductes()
+    {
+        // Obté la connexió a la base de dades
         $conexionObj = new Connexio();
         $conexion = $conexionObj->obtenirConnexio();
 
-        // Consulta para obtener la lista de productos con información de categorías
+        // Consulta per obtenir la llista de productes amb informació de categories
         $consulta = "SELECT p.id, p.nom, p.descripció, p.preu, c.nom as categoria
                      FROM productes p
                      INNER JOIN categories c ON p.categoria_id = c.id";
         $resultado = $conexion->query($consulta);
 
-        // Estructura HTML de la página
+        // Genera la interfície HTML
         echo '<!DOCTYPE html>
               <html lang="es">
               <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
                 <title>Llista de productes</title>
-                <!-- Enlace a Bootstrap desde su repositorio remoto -->
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
               </head>
               <body>
                 <div class="container mt-5" style="margin-bottom: 100px">';
 
-        // Verifica si hay productos en la base de datos
         if ($resultado->num_rows > 0) {
-            // Botón para agregar un nuevo producto
-            echo '<hr><a href="Nou.php" class="btn btn-primary">Nou producte</a><hr>';
-            // Tabla para mostrar la lista de productos
+            // Mostra la taula de productes
             echo '<table class="table table-striped">';
             echo '<thead>
                     <tr>
@@ -49,7 +55,8 @@ class Principal {
                   </thead>';
             echo '<tbody>';
             $i = 1;
-            // Itera sobre los resultados y muestra cada producto en una fila de la tabla
+
+            // Itera sobre els resultats
             while ($fila = $resultado->fetch_assoc()) {
                 echo '<tr>
                         <td>' . $i . '</td>
@@ -65,20 +72,46 @@ class Principal {
             }
             echo '</tbody>';
             echo '</table>';
-            echo '</div>';
-            // Incluye el pie de página
-            require_once('Footer.php');
         } else {
-            // Mensaje si no hay productos
             echo '<p>No hi ha productes.</p>';
         }
 
-        // Cierra la conexión a la base de datos
+        // Formulario per afegir nous productes
+        echo '<div class="mt-4">
+                <h4>Afegir nou producte</h4>
+                <form action="Nou.php" method="POST" class="row g-3">
+                    <div class="col-md-4">
+                        <label for="nom" class="form-label">Nom:</label>
+                        <input type="text" name="nom" id="nom" class="form-control" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="descripcio" class="form-label">Descripció:</label>
+                        <input type="text" name="descripcio" id="descripcio" class="form-control" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="preu" class="form-label">Preu:</label>
+                        <input type="number" name="preu" id="preu" step="0.01" class="form-control" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="categoria" class="form-label">Categoria:</label>
+                        <select name="categoria" id="categoria" class="form-select" required>
+                            <option value="1">Electrònics</option>
+                            <option value="2">Roba</option>
+                        </select>
+                    </div>
+                    <div class="col-12 text-end">
+                        <button type="submit" class="btn btn-primary">Afegir producte</button>
+                    </div>
+                </form>
+              </div>';
+
+        // Inclou el footer
+        require_once('Footer.php');
         $conexion->close();
     }
 }
 
-// Crea una instancia de la clase Principal y llama al método mostrarProductes
+// Instancia la classe Principal
 $listaProductos = new Principal();
 $listaProductos->mostrarProductes();
 
